@@ -291,9 +291,9 @@ void totext(void)
 
 void WipeScreen(void)
 {
-	clearscreen(0x71, '°');
+	clearscreen(0x71, 'ï¿½');
 	textattr(BARS);
 	CPrintfXY(1,  1, "    F2 Things    F3 Frames    F4 Misc    F5 Sounds    F6 Sprites    F7 Text     ");
-        CPrintfXY(1, 50, "        F1 Help       Load       SeHackEd v0.4       Save       Esc Quit       ");
-        pokew(79, 49, BARS*256 + ' ');  // Changed Dehacked to Sehacked
+	CPrintfXY(1, 50, "	F1 Help       Load       SeHackEd v0.4       Save       Esc Quit       ");
+	pokew(79, 49, BARS*256 + ' ');  // Changed Dehacked to Sehacked
 }

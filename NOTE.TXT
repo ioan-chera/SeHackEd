@@ -50,7 +50,7 @@ You can obviously spot which files are modified by seeing that their dates
 are a lot more recent.  They also start with new comments.  To find what
 changes I made simply search for this
 text:
-// Changed 
+// Changed
 
 
 You can always look at the original Dehacked source files to see how they
@@ -114,21 +114,21 @@ a shareware-modifying version floating around.  'nuff said.
 all the function prototypes, plus other functions that the code calls.  The
 DEHACKED.H file contains global #defines and enums.  Functions should be
 split up fairly consistently among the various source files, i.e., anything
-dealing with patch files is in FILES.CPP, low-level screen accessing 
+dealing with patch files is in FILES.CPP, low-level screen accessing
 functions are in SCREEN.CPP, etc.
 
   DeHackEd was compiled with Borland C++ 3.1.
 
   Thanks!
-                                                Greg Lewis
-                                                gregl@umich.edu
+						Greg Lewis
+						gregl@umich.edu
 
 -------------------------------------
 end of original note.txt
 
   SeHackEd was compiled with Borland Turbo C++ 3.0.
 
-                                                Mike Fredericks
-                                                chohatsu@yahoo.com
+						Mike Fredericks
+						chohatsu@yahoo.com
 
 

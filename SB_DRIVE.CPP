@@ -38,7 +38,7 @@ Bill Neisius (bill@solaria.hac.com) - July 1992
    [ This file is a part of SBlast-BSD-1.4 ]
 
    Steve Haehnichen <shaehnic@ucsd.edu>
- 
+
    $Id: sb_driver.c,v 1.29 1992/06/13 01:46:43 steve Exp steve $
 
    Copyright (C) 1992 Steve Haehnichen.
@@ -72,8 +72,8 @@ Bill Neisius (bill@solaria.hac.com) - July 1992
 #include <conio.h>
 #include <mem.h>
 
-#include "sblast.h"             /* User-level structures and defs */
-#include "sb_regs.h"            /* Register and command values */
+#include "sblast.h"	     /* User-level structures and defs */
+#include "sb_regs.h"	    /* Register and command values */
 #include "dehacked.h"			  /* DeHackEd stuff (mouse) */
 
 #include <malloc.h>
@@ -95,7 +95,7 @@ int DMA_complete = 1;
  * This is the highest DSP speed that will use "Low-Speed" mode.
  * Anything greater than this will use the "High-Speed" mode instead.
  */
-#define         MAX_LOW_SPEED   22222
+#define	 MAX_LOW_SPEED   22222
 
 /*
  * This is the speed the DSP will start at when you reboot the system.
@@ -103,7 +103,7 @@ int DMA_complete = 1;
  * the current card setting.  Does it matter?
  * (43478 is the closest we can get to 44 KHz)
  */
-#define         INITIAL_DSP_SPEED       8000
+#define	 INITIAL_DSP_SPEED       8000
 
 /*
  * Define this if you consider ADC overruns to be an error, and
@@ -111,9 +111,9 @@ int DMA_complete = 1;
  * this is usually the case, or you will have gaps in the sound.
  * (This shouldn't happen.  Most apps can keep up with 45K/sec.)
  * For real-time use, overruns should be ignored.
- * This looks like an ioctl-toggle candidate to me. 
+ * This looks like an ioctl-toggle candidate to me.
  */
-#define         ERROR_ON_OVERRUN
+#define	 ERROR_ON_OVERRUN
 
 #define FALSE 0
 #define TRUE 1
@@ -125,23 +125,23 @@ int DMA_complete = 1;
 
 
 /* Number of "cycles" in one second.  Shouldn't this be somewhere else? */
-#define HZ              100
+#define HZ	      100
 
-#define TIMEOUT         (10 * HZ)  /* FM interrupt patience in clock ticks */
+#define TIMEOUT	 (10 * HZ)  /* FM interrupt patience in clock ticks */
 
 #define DSP_LOOP_MAX 1000
 
 #define DSP_UNIT 0
 
-enum { PLAY, RECORD };          /* DSP sampling directions */
+enum { PLAY, RECORD };	  /* DSP sampling directions */
 
 /* WVN - 64K buffers */
 /*
  * NOTE - MSF - Well, I cant afford OS/2 yet, so I'm stuck with
- *              wonderful 64k segments in MSC 5.1. Comment below
- *              holds, except I allocate 2 buffers in a 32k chunk.
- *              To be sure things will work DO NOT CHOOSE DSP_BUF_SIZE
- *              to be larger than 1/3 sizeof(memory_chunk)!.
+ *	      wonderful 64k segments in MSC 5.1. Comment below
+ *	      holds, except I allocate 2 buffers in a 32k chunk.
+ *	      To be sure things will work DO NOT CHOOSE DSP_BUF_SIZE
+ *	      to be larger than 1/3 sizeof(memory_chunk)!.
  *
  * ORIGINAL COMMENT FOLLOWS (msf)
  *
@@ -166,34 +166,34 @@ enum { PLAY, RECORD };          /* DSP sampling directions */
 /* ... a buffer of 33K allocates 130K of memory */
 /* ... a buffer of 32K allocates  96K of memory */
 /* either select 64K, or a buffer 32K or less...*/
-#define DSP_BUF_SIZE        (long)((1L << 16) -1)
+#define DSP_BUF_SIZE	(long)((1L << 16) -1)
 
 static char _huge *memory_chunk;
 
-/* 
+/*
    for all DSP-related variables and flags. */
 /* MSF - added speaker_on flag to tell if speaker on or off */
 
 struct sb_dsp_type
 {
-  unsigned int  speed;          /* DSP sampling rate */
-  int   no_timeout;                /* Timeout for one DSP buffer */
-  BYTE  compression;            /* Current DAC decompression mode */
-  FLAG  hispeed;                /* 1 = High Speed DSP mode, 0 = low speed */
-  FLAG  in_stereo;              /* 1 = currently in stereo, 0 = mono */
-  BYTE  start_command;          /* current DSP start command */
-  int   error;                  /* Current error status on read/write */
-  int   semaphore;              /* Silly place-holder int for dsp_dma_start */
+  unsigned int  speed;	  /* DSP sampling rate */
+  int   no_timeout;		/* Timeout for one DSP buffer */
+  BYTE  compression;	    /* Current DAC decompression mode */
+  FLAG  hispeed;		/* 1 = High Speed DSP mode, 0 = low speed */
+  FLAG  in_stereo;	      /* 1 = currently in stereo, 0 = mono */
+  BYTE  start_command;	  /* current DSP start command */
+  int   error;		  /* Current error status on read/write */
+  int   semaphore;	      /* Silly place-holder int for dsp_dma_start */
   void  (*cont_xfer)(void);     /* Function to call to continue a DMA xfer */
-  char  _huge *buf[2];                /* Two pointers to mono-page buffers */
-  unsigned long  phys_buf[2];            /* Physical addresses for dsp buffers */
-  FLAG  full[2];                /* True when that buffer is full */
-  unsigned int   used[2];                /* Buffer bytes used by read/write */
-  BYTE  active;                 /* The buffer currently engaged in DMA */
-  BYTE  hi;                     /* The buffer being filled/emptied by user */
-  FLAG  first_block;            /* True for the first DAC block */
-  FLAG  dont_block;             /* FNDELAY flag sets this, clear otherwise */
-  FLAG  speaker_on;             /* added by MSF - TRUE - voice on, else off */
+  char  _huge *buf[2];		/* Two pointers to mono-page buffers */
+  unsigned long  phys_buf[2];	    /* Physical addresses for dsp buffers */
+  FLAG  full[2];		/* True when that buffer is full */
+  unsigned int   used[2];		/* Buffer bytes used by read/write */
+  BYTE  active;		 /* The buffer currently engaged in DMA */
+  BYTE  hi;		     /* The buffer being filled/emptied by user */
+  FLAG  first_block;	    /* True for the first DAC block */
+  FLAG  dont_block;	     /* FNDELAY flag sets this, clear otherwise */
+  FLAG  speaker_on;	     /* added by MSF - TRUE - voice on, else off */
 };
 static struct sb_dsp_type dsp;  /* 'dsp' structure used everywhere */
 
@@ -203,14 +203,14 @@ static struct sb_dsp_type dsp;  /* 'dsp' structure used everywhere */
    general status values. */
 struct sb_status_type
 {
-  FLAG  dsp_in_use;             /* DSP or MIDI open for reading or writing */
-  FLAG  fm_in_use;              /* FM open for ioctls */
-  FLAG  cms_in_use;             /* CMS open for ioctls */
-  
-  FLAG  alive;                  /* Card present? */
-  unsigned int addr;            /* Sound Blaster card address */
-  unsigned int irq;             /* MSF-added this */
-  int  *wake[NUM_UNITS];        /* What to wakeup on interrupt */
+  FLAG  dsp_in_use;	     /* DSP or MIDI open for reading or writing */
+  FLAG  fm_in_use;	      /* FM open for ioctls */
+  FLAG  cms_in_use;	     /* CMS open for ioctls */
+
+  FLAG  alive;		  /* Card present? */
+  unsigned int addr;	    /* Sound Blaster card address */
+  unsigned int irq;	     /* MSF-added this */
+  int  *wake[NUM_UNITS];	/* What to wakeup on interrupt */
 };
 static struct sb_status_type status; /* Global current status */
 
@@ -312,7 +312,7 @@ if ( (pEnv = getenv("BLASTER")) != NULL ) {
     while ( *pEnv ) {
       switch (*pEnv) {
 
-	case 'A':                   /* read address (up to space) */
+	case 'A':		   /* read address (up to space) */
 	case 'a':
 	  if (dev->addr == 0)
 		{
@@ -321,7 +321,7 @@ if ( (pEnv = getenv("BLASTER")) != NULL ) {
 	  ++pEnv;
 	  break;
 
-	case 'I':                   /* read IRQ address (up to space) */
+	case 'I':		   /* read IRQ address (up to space) */
 	case 'i':
 	  if (dev->irq == 0)
 		{
@@ -330,7 +330,7 @@ if ( (pEnv = getenv("BLASTER")) != NULL ) {
 	  ++pEnv;
 	  break;
 
-	case 'D':                       /* DMA channel */
+	case 'D':		       /* DMA channel */
 	case 'd':
 	  if (SB_DMA_CHAN < 0 )
 		{
@@ -339,7 +339,7 @@ if ( (pEnv = getenv("BLASTER")) != NULL ) {
 	  ++pEnv;
 	  break;
 
-	default:                        /* ignore everything else */
+	default:			/* ignore everything else */
 	  pEnv++;
       }
 
@@ -393,7 +393,7 @@ return (status.alive);
 
 /*======================================================================*/
 /* MSF - This should be called when done, resets interrupts and stuff
- *       Machine can act unpredictably otherwise.                     */
+ *       Machine can act unpredictably otherwise.		     */
 void
 sb_unattach (void)
 {
@@ -431,11 +431,11 @@ _enable();
 }
 
 /*=======================================================================*/
-/* WVN - new interrupt routine... keep it as short as possible           */
+/* WVN - new interrupt routine... keep it as short as possible	   */
 void interrupt far sb_intr (...)
 {
 DMA_complete = 1;
-inp (DSP_RDAVAIL);          /* ack interrupt */
+inp (DSP_RDAVAIL);	  /* ack interrupt */
 if (status.irq < 8)
 	outb(0x20,0x20);
 else
@@ -446,7 +446,7 @@ else
 /*======================================================================*/
 /* MSF - supposed to wait ten microseconds, although I havent timed it
  *       Probably waits longer, important thing is that you cant write
- *       to the DSP without a delay between writes                    */
+ *       to the DSP without a delay between writes		    */
 void tenmicrosec(void)
 {
 long i;
@@ -514,7 +514,7 @@ dsp_reset (void)
    * data ready, then read a byte from DSP_RDDATA.  It should be 0xAA.
    * Allow 100 microseconds for the reset.
    */
-  tenmicrosec();                /* Lets things settle down. (necessary?) */
+  tenmicrosec();		/* Lets things settle down. (necessary?) */
   outb (DSP_RESET, 0x01);
   tenmicrosec();
   outb (DSP_RESET, 0x00);
@@ -584,7 +584,7 @@ if ( !(memory_chunk =  (char huge*)halloc ( allocation, 1 ) ) )
 DPRINTF (("memory_chunk %8.8lx\n", memory_chunk));
 
 startseg = (unsigned long) ((unsigned long)memory_chunk & 0xffff0000L) >> 16;
-startoff = (unsigned long)                 memory_chunk & 0x0000ffff;
+startoff = (unsigned long)		 memory_chunk & 0x0000ffff;
 DPRINTF (("startseg %8.8lx startoff %8.8lx\n",startseg,startoff));
 
 break64k = ((((startseg*16 + startoff) >> 16) + 1) << 16);
@@ -660,7 +660,7 @@ if (dsp.hispeed)
 		}
 	dsp_command (dsp.start_command); /* GO! */
 	}
-else                          /* Low Speed transfer */
+else			  /* Low Speed transfer */
 	{
 	DPRINTF (("dsp_dma_start:Starting Low-Speed DMA xfer of %u bytes to/from buffer %d.\n",
 		dsp.used[dsp.active], dsp.active));
@@ -711,10 +711,10 @@ while (bytecount < len)
 		dsp.hi ^= 1;      /* Switch to other buffer */
 		dsp.used[dsp.hi] = 0; /* Mark it as empty */
 
-		}                   /* if filled hi buffer */
+		}		   /* if filled hi buffer */
 
 	bytecount += hunk_size;
-	}                       /* While there are bytes left in chunk */
+	}		       /* While there are bytes left in chunk */
 
 return (dsp.error);
 }
@@ -779,7 +779,7 @@ dsp.compression = PCM_8;
 dsp.speed = 11025;
 
 status.dsp_in_use = TRUE;
-dsp_reset ();                 /* Resets card and inits variables */
+dsp_reset ();		 /* Resets card and inits variables */
 dsp_set_speed (&dsp.speed);   /* Set SB back to the current speed. */
 dsp_set_voice(OFF);    /* turn off speaker by default */
 
@@ -849,7 +849,7 @@ int dsp_close (void)
 		return (ESUCCESS);
 	 }
   else
-	 return (ESRCH);             /* Does this ever happen? */
+	 return (ESRCH);	     /* Does this ever happen? */
 }
 
 /*========================================================================*/
@@ -875,7 +875,7 @@ unsigned int dsp_set_speed (unsigned int *speed) {
 //      *speed = dsp.speed;
 //      return (ESUCCESS);
 //    }
-  
+
 //  if (*speed < (long)DSP_MIN_SPEED || *speed > (long)DSP_MAX_SPEED)
 //    {
 //      DPRINTF (("Attempt to set invalid speed (%ud)\n", *speed));

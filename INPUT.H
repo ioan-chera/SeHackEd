@@ -17,33 +17,33 @@ int   Sortfunction(const void *a, const void *b);
 EBool Waitforevent(EBool eatevent);
 
 // Which fields belong to which Thing windows...
-int thingwindows[][2] = { 1, 10,	 // Misc
-								 11, 15,	 // Sound
-								 16, 23,	 // Frame
-								 24, 39,	 // bit1
-								 40, 55,	 // bit2
-								 56, 56}; // Info
+int thingwindows[][2] = { 1, 10,     // Misc
+                                 11, 15,     // Sound
+                                 16, 23,     // Frame
+                                 24, 39,     // bit1
+                                 40, 55,     // bit2
+                                 56, 56}; // Info
 
 // Which fields belong to which Misc windows
-int miscwindows[][2] = { 1,  8, // Weapon 
-                                                                 9, 25, // Cheat
-                                                                26, 41};        // Player
+int miscwindows[][2] = { 1,  8, // Weapon
+                                 9, 25, // Cheat
+                                26, 41};    // Player
 
 // Variables from dehacked.cpp
-extern ERedraw redraw;					// Current redraw state
-extern EModes  mode;						//	The mode we start in
-extern FILE *doomexefp;					// File pointer to doom.exe
-extern FILE *doomwadfp; 		      // File pointer to doom.wad
-extern FILE *doombakfp;					// File pointer to doom backup exe
-extern EVersions version;           // The Doom version we're using
-extern char curdir[MAXDIR+1];			// Directory at start of program
-extern EBool changes;					// If changes have been made or not
-extern ScreenSet *Modeptr;				// Pointer to Data for the current mode
+extern ERedraw redraw;                    // Current redraw state
+extern EModes  mode;                        //    The mode we start in
+extern FILE *doomexefp;                    // File pointer to doom.exe
+extern FILE *doomwadfp;               // File pointer to doom.wad
+extern FILE *doombakfp;                    // File pointer to doom backup exe
+extern EVersions version;       // The Doom version we're using
+extern char curdir[MAXDIR+1];            // Directory at start of program
+extern EBool changes;                    // If changes have been made or not
+extern ScreenSet *Modeptr;                // Pointer to Data for the current mode
 
-extern char doompath[80];				// Directory to run doom from
-extern char doomexe[80];				// Doom.exe file name
-extern char doomargs[80];				// Arguments when Doom is run
-extern char patchdir[80];				// Patch file directory
+extern char doompath[80];                // Directory to run doom from
+extern char doomexe[80];                // Doom.exe file name
+extern char doomargs[80];                // Arguments when Doom is run
+extern char patchdir[80];                // Patch file directory
 
 // Data from doom exe file
 extern long (*thingdata )[THING_FIELDS];
@@ -80,10 +80,10 @@ extern int   GotoObject(int firstdigit);
 extern void  Highlight(unsigned char attribute);
 extern void  Jump(void);
 extern void  Listkeyinput(char key, int &topnum, int &curnum, int maxnum,
-								  int listsize);
+                                  int listsize);
 extern void  Listmouseinput(int mousex, int mousey, int arrowx, int arrowy1,
-									 int arrowy2, int &topnum, int &curnum,
-									 int maxnum, int listsize);
+                                     int arrowy2, int &topnum, int &curnum,
+                                     int maxnum, int listsize);
 extern void  Loadpatchname(void);
 extern void  Savepatchname(void);
 
@@ -94,7 +94,7 @@ extern char namelist[345][18];  // changed 138 to 345
 extern void CPrintfXY(int x, int y, char *string, ...);
 extern void CPutsXY(int x, int y, char *string);
 extern void Drawframe(int type, unsigned char attr, int left, int top,
-							 int right, int bot);
+                             int right, int bot);
 extern void Getwindow(int x1, int y1, int x2, int y2);
 extern void Putwindow(void);
 
@@ -110,10 +110,10 @@ extern int  Showframe(long framenum);
 extern void  hideMouseCursor(void);
 extern void  showMouseCursor(void);
 extern EBool getLastEvent(unsigned &x, unsigned &y, EButton &left_button,
-								  EButton &right_button);
+                                  EButton &right_button);
 
 // Variables from mouse.h
 extern unsigned eventButtons;
 extern unsigned LastEventButtons;
-extern EBool eventHappened;        // these vars to use getLastEvent
+extern EBool eventHappened;    // these vars to use getLastEvent
 extern long lclicktime;

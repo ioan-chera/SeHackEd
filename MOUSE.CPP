@@ -21,8 +21,8 @@ void CloseMouse (void)
 int doMouse (void)
 {
 	/* trick stupid mouse driver to know we are in graphic mode */
-	reg.r_ax = 0;          /* detect genius mouse */
-	reg.r_bx = 0;          /* be sure what mode we get */
+	reg.r_ax = 0;	  /* detect genius mouse */
+	reg.r_bx = 0;	  /* be sure what mode we get */
 	MOUSEINT;
 	mouse_present = (reg.r_ax ? YES : NO)   ; /* not an iret.. */
 	if (mouse_present == NO)

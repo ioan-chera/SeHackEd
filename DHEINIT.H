@@ -67,58 +67,58 @@ EBool loadlogo = YES;			// Load the logo at program start
 
 DataSet Data[NUMDATA] = {
 	// Global data for Things.  Refer to dehacked.h
-        // complete struct explanation.
-        { {0xADFDCL, 0xA576CL, 0xADD84L, 0xADF90L, 0xADF90L},
-                34560L, 360, 92,
-                "Thing" }, // changed 138 to 345 and A5660 to ADF90 and 12696 to 33024or33120 but that being over 32766 gives warning
-                // 33120 for 345 things
+	// complete struct explanation.
+	{ {0xADFDCL, 0xA576CL, 0xADD84L, 0xADF90L, 0xADF90L},
+		34560L, 360, 92,
+		"Thing" }, // changed 138 to 345 and A5660 to ADF90 and 12696 to 33024or33120 but that being over 32766 gives warning
+		// 33120 for 345 things
 	// Frame
-        { {0xA6944L, 0x9DD28L, 0xA66ECL, 0xA68F8L, 0xA68F8L},
-                30360, 1518, 28,
-                "Frame" }, // changed 966 to 1344 and 9EC9C to A68F8 and 27048 to 30360
+	{ {0xA6944L, 0x9DD28L, 0xA66ECL, 0xA68F8L, 0xA68F8L},
+		30360, 1518, 28,
+		"Frame" }, // changed 966 to 1344 and 9EC9C to A68F8 and 27048 to 30360
 
 	// Weapon
-        { {0x583E4L, 0x54834L, 0x584C4L, 0x589B4L, 0x588F4L},
-                308, 11, 25,
-                "Weapon" },   // Changed 9 to 11 and 24 to 25 and 9BFB8 to 588F4 and 216 to 308
+	{ {0x583E4L, 0x54834L, 0x584C4L, 0x589B4L, 0x588F4L},
+		308, 11, 25,
+		"Weapon" },   // Changed 9 to 11 and 24 to 25 and 9BFB8 to 588F4 and 216 to 308
 
 	// Sound
-        { {0xA5860L, 0x9CC58L, 0xA5608L, 0xA5814L, 0xA5814L},
-                3240, 135, 36,
-                "Sound" },  // changed 9DB24 to A5814 and 107 to 135 and 3852 to 3240 (not 3256)
+	{ {0xA5860L, 0x9CC58L, 0xA5608L, 0xA5814L, 0xA5814L},
+		3240, 135, 36,
+		"Sound" },  // changed 9DB24 to A5814 and 107 to 135 and 3852 to 3240 (not 3256)
 
 	// Sprite
-        { {0xA6528L, 0x9D920L, 0xA62D0L, 0xA64DCL, 0xA64DCL},
-               1052, 263, 4,
-                "Sprite" }, // changed 9EA74 to A64DC and 138 to 263 and 552 to 1052
+	{ {0xA6528L, 0x9D920L, 0xA62D0L, 0xA64DCL, 0xA64DCL},
+	       1052, 263, 4,
+		"Sprite" }, // changed 9EA74 to A64DC and 138 to 263 and 552 to 1052
 
 	// Text
-        { {0x8CC54L, 0x84654L, 0x8CC54L, 0x8CE54L, 0x8CE54L},
+	{ {0x8CC54L, 0x84654L, 0x8CC54L, 0x8CE54L, 0x8CE54L},
 		0, 0, 0,
-                "Text" }, // changed A8B78 to 8CE54
+		"Text" }, // changed A8B78 to 8CE54
 
 	// Code pointers
-        { {0x3E1D0L, 0x3E122L, 0x3E1D4L, 0x409EEL, 0x409EEL},
-                3864, 1518, 4,
-                "Code Pointer" }, //changed 966 to 1344
+	{ {0x3E1D0L, 0x3E122L, 0x3E1D4L, 0x409EEL, 0x409EEL},
+		3864, 1518, 4,
+		"Code Pointer" }, //changed 966 to 1344
 
 	// Cheats
 	// IDDT is always assumed to be 3624 bytes before the offset given.
 	// If this ever changes... ick.
-        { {0xA5354L, 0x9C729L, 0xA50FCL, 0xA5308L, 0xA5308L},
-                151, 17, 0,
-                "Cheat" }, // changed 9CCC4 to A5308
+	{ {0xA5354L, 0x9C729L, 0xA50FCL, 0xA5308L, 0xA5308L},
+		151, 17, 0,
+		"Cheat" }, // changed 9CCC4 to A5308
 
 	// Ammo
-        { {0xA4070L, 0x9B3D8L, 0xA3E18L, 0xA4024L, 0xA4024L},
-                56, 14, 7,
-                "Ammo" }, // changed 8 to 14 and 4 to 7or9 and 9BF98 to A4024 and 32 to 56
+	{ {0xA4070L, 0x9B3D8L, 0xA3E18L, 0xA4024L, 0xA4024L},
+		56, 14, 7,
+		"Ammo" }, // changed 8 to 14 and 4 to 7or9 and 9BF98 to A4024 and 32 to 56
 
 	// Miscellaneous
 	// The real offset material is stored in Miscoff.
-        { {0x5C858L, 0x5C848L, 0x5C838L, 0x62BD8L, 0x62BD8L},
+	{ {0x5C858L, 0x5C848L, 0x5C838L, 0x62BD8L, 0x62BD8L},
 		64, 16, 4,
-                "Misc" } // changed 62BD8 to
+		"Misc" } // changed 62BD8 to
 
 // 67239
 // 68B77
@@ -144,43 +144,43 @@ ScreenSet Screen[NUMSCREENS] = {
 	// Screen data for Thing editing screen.  Refer to dehacked.h
 	// complete struct explanation.
 	{  "Thing",
-                0, 1, 0, 1, 360,
-                {77, 5, 77, 24}, // changed 138 to 345 and 23 to 24
+		0, 1, 0, 1, 360,
+		{77, 5, 77, 24}, // changed 138 to 345 and 23 to 24
 		6, thingwindows,
 		Printthing,
 		Updatethings },
 
 	// Frame
 	{  "Frame",
-                0, 1, 0, 0, 1517,
+		0, 1, 0, 0, 1517,
 		{76, 8, 76, 42},
-                5, NULL,
+		5, NULL,
 		Printframe,
-                Updateframe }, // changed 965 to 1343 and 6 to 5
+		Updateframe }, // changed 965 to 1343 and 6 to 5
 
 	// Misc
 	{  "Weapon",
-                0, 1, 0, 1, 11,
-                {60, 34, 60, 44},
-                2, miscwindows,
+		0, 1, 0, 1, 11,
+		{60, 34, 60, 44},
+		2, miscwindows,
 		Printmisc,
-                Updatemisc },  // Changed 33 to 34 and 43 to 44 and 9 to 11 and 3 to 2
+		Updatemisc },  // Changed 33 to 34 and 43 to 44 and 9 to 11 and 3 to 2
 
 	// Sound
 	{  "Sound",
-                0, 1, 0, 1, 135,
-                {64, 5, 64, 42},
+		0, 1, 0, 1, 135,
+		{64, 5, 64, 42},
 		3, NULL,
 		Printsound,
-                Updatesound }, // changed 8 to 5 and 107 to 135
+		Updatesound }, // changed 8 to 5 and 107 to 135
 
 	// Sprite
 	{  "Sprite",
-                0, 1, 0, 0, 262,
+		0, 1, 0, 0, 262,
 		{54, 8, 54, 42},
 		1, NULL,
 		Printsprite,
-                Updatesprite }, // changed 137 to 262
+		Updatesprite }, // changed 137 to 262
 
 	// Text
 	{  "Text",
@@ -196,11 +196,11 @@ int textobjs[NUMVERS] = {1421, 1346, 1404, 1405, 1405}; // changed 1094 to 1404
 
 // Order (field-wise) of things
 char thingorder[24] = {IDNUM, HP, SPEED, WIDTH, HEIGHT, MISSILEDAMAGE,
-                                                          REACTIONTIME, PAINCHANCE, MASS, BITS, ALERTSOUND,
+							  REACTIONTIME, PAINCHANCE, MASS, BITS, ALERTSOUND,
 							  ATTACKSOUND, PAINSOUND, DEATHSOUND, ACTSOUND,
 							  NORMALFRAME, MOVEFRAME, INJUREFRAME, CLOSEATTACKFRAME,
-                                                          FARATTACKFRAME, CRASHFRAME, DEATHFRAME, EXPLDEATHFRAME,
-                                                          NAMEP};
+							  FARATTACKFRAME, CRASHFRAME, DEATHFRAME, EXPLDEATHFRAME,
+							  NAMEP};
 
 // From screen.cpp
 extern void clearscreen(char attr, char fill);

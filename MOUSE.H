@@ -24,10 +24,10 @@ void swapEventHandler(unsigned mask ,void huge (*handler)());
 EBool mouse_present;
 unsigned eventX, eventY, eventButtons; /* any event handler should update */
 unsigned LastEventButtons;
-EBool eventHappened;        /* these vars to use getLastEvent   */
+EBool eventHappened;	/* these vars to use getLastEvent   */
 long  lclicktime;
-struct REGPACK reg;             /* general registers used */
-signed int mouseCursorLevel;        /* if > 0 mouse cursor is visiable,
+struct REGPACK reg;	     /* general registers used */
+signed int mouseCursorLevel;	/* if > 0 mouse cursor is visiable,
 													otherwise not, containes the level
 													of showMouseCursor/hideMouseCursor */
 

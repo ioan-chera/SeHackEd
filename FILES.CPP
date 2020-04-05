@@ -33,7 +33,7 @@ int Checkforfile(char *doomfile, char *arg1, char *doomext, char *type, FILE **f
 	if (commandname == YES)
 	{
 		strcpy(filename, arg1);
-                strcat(filename, "strife"); // changed doom to strife
+		strcat(filename, "strife"); // changed doom to strife
 		strcat(filename, doomext);
 	}
 	else
@@ -43,20 +43,20 @@ int Checkforfile(char *doomfile, char *arg1, char *doomext, char *type, FILE **f
 	printf("Checking for %s...   ", filename);
 	if ((*fp = fopen(filename, type)) == NULL)
 	{
-                // Cheap kludge.  Swap a 1 in on the end of the filename (change from
-                // "strife.exe" to "strife1.exe", if we're running command-line AND
+		// Cheap kludge.  Swap a 1 in on the end of the filename (change from
+		// "strife.exe" to "strife1.exe", if we're running command-line AND
 		// the name extension isn't "hack.exe", which it will be for the
 		// backup file.
 		if ((commandname == YES) && (strlen(doomext) < 7))
 		{
-                        // Slip a "1" into the filename before the extension.
-                        strcpy(strstr(filename, doomext), "1");
-                        strcat(filename, doomext);
-                        printf("not found!      \nChecking for %s...  ", filename); // changed
-                        if ((*fp = fopen(filename, "r+b")) == NULL)
+			// Slip a "1" into the filename before the extension.
+			strcpy(strstr(filename, doomext), "1");
+			strcat(filename, doomext);
+			printf("not found!      \nChecking for %s...  ", filename); // changed
+			if ((*fp = fopen(filename, "r+b")) == NULL)
 				found = NO;
 			else
-                                found = YES;
+				found = YES;
 		}
 		else
 			found = NO;
@@ -101,14 +101,14 @@ void Convertpatch(FILE *patchp, char patchformat)
 	}
 
 	// Ammo is the same
-        fread(ammodata, 8, 10, patchp);  // Changed 4 to 8 and 8 to 10
+	fread(ammodata, 8, 10, patchp);  // Changed 4 to 8 and 8 to 10
 
-        for (i=0; i<14; i++)  // Changed 8 to 14
+	for (i=0; i<14; i++)  // Changed 8 to 14
 	{
-                fread(buffer,  25, 1, patchp);  // changed 24 to 25
-                for (j=0; j<8; j++)  // Changed 5 to 8
+		fread(buffer,  25, 1, patchp);  // changed 24 to 25
+		for (j=0; j<8; j++)  // Changed 5 to 8
 			buffer[j+1] = frameconvar[buffer[j+1]];
-                memcpy(weapondata[i], buffer, 25);  // changed 24 to 25
+		memcpy(weapondata[i], buffer, 25);  // changed 24 to 25
 	}
 
 	if (patchformat == 2)
@@ -153,7 +153,7 @@ int CreateDiffSave(FILE *patchp)
 	allorig[3] = soundorig  = new long[Data[SOUND].numobj][SOUND_FIELDS];
 	allorig[4] = spriteorig = new long[Data[SPRITE].numobj];
 	allorig[5] = textorig   = new char[Data[TEXT].length];
-        allorig[6] = codeporig  = new long[Data[CODEP].numobj];
+	allorig[6] = codeporig  = new long[Data[CODEP].numobj];
 	allorig[7] = cheatorig  = new char[Data[CHEAT].length];
 	allorig[8] = ammoorig   = new long[Data[AMMO].numobj];
 	allorig[9] = miscorig   = new long[Data[MISC].numobj];
@@ -201,7 +201,7 @@ int CreateDiffSave(FILE *patchp)
 			{
 				if (nameprinted == NO)
 				{
-                                        fprintf(patchp, "\nSound %d\n", i+1); // changed i+1 to i
+					fprintf(patchp, "\nSound %d\n", i+1); // changed i+1 to i
 					nameprinted = YES;
 				}
 				fprintf(patchp, "%s = %ld\n", soundfields[j], soundorig[i][j]);
@@ -234,7 +234,7 @@ int CreateDiffSave(FILE *patchp)
 		if (spriteorig[i] != spritedata[i])
 			fprintf(patchp, "\nSprite %d\nOffset = %ld\n", i, spriteorig[i]);
 
-        for (i=0; i<7; i++)  // Changed 4 to 7
+	for (i=0; i<7; i++)  // Changed 4 to 7
 	{
 		nameprinted = NO;
 		if (ammoorig[i] != ammodata[i])
@@ -244,11 +244,11 @@ int CreateDiffSave(FILE *patchp)
 			fprintf(patchp, "Max ammo = %ld\n", ammoorig[i]);
 		}
 
-                if (ammoorig[i+4] != ammodata[i+7]) // Changed 4 to 7
+		if (ammoorig[i+4] != ammodata[i+7]) // Changed 4 to 7
 		{
 			if (nameprinted == NO)
 				fprintf(patchp, "\nAmmo %d (%s)\n", i, ammolist[i]);
-                        fprintf(patchp, "Per ammo = %ld\n", ammoorig[i+7]);  // changed 4 to 7
+			fprintf(patchp, "Per ammo = %ld\n", ammoorig[i+7]);  // changed 4 to 7
 		}
 	}
 
@@ -269,7 +269,7 @@ int CreateDiffSave(FILE *patchp)
 		}
 	}
 
-        /*for (i=0; i<Data[CODEP].numobj; i++) // changed
+	/*for (i=0; i<Data[CODEP].numobj; i++) // changed
 	{
 		// Check if the code pointer has been changed.  If so, we need to
 		// search through all of the frames to see if we can find the frame
@@ -284,7 +284,7 @@ int CreateDiffSave(FILE *patchp)
 			// Find out which code pointer this is (necessary for 3.0 patches
 			// but I wish I could change it now)
 			for (k=0; k<NUMCODEP; k++)
-                                if (k == i)//if (codepconv[k] == i) // changed
+				if (k == i)//if (codepconv[k] == i) // changed
 					break;
 
 			if (j == Data[FRAME].numobj)
@@ -296,7 +296,7 @@ int CreateDiffSave(FILE *patchp)
 				fprintf(patchp, "\nPointer %d (Frame %d)\nCodep Frame = %d\n",
 					  k, i, j);
 		}
-        } */
+	} */
 
 	nameprinted = NO;
 	for (i=0; i<Data[CHEAT].numobj; i++)
@@ -344,8 +344,8 @@ int CreateDiffSave(FILE *patchp)
 		memcpy(alldata[i], allorig[i], Data[i].length);
 		delete[] allorig[i];
 	}
-        codeporig+=k; // shut up warning
-        codeporig-=k; // about not being used
+	codeporig+=k; // shut up warning
+	codeporig-=k; // about not being used
 	return 0;
 }
 
@@ -397,19 +397,19 @@ int GetDoomFiles(char *arg1)
 	if ((Checkforfile(doombak, arg1, ".exe", "rb", &doombakfp) == -1) ||
 		 (Checkforfile(doomwad, arg1, ".wad", "rb", &doomwadfp) == -1))
 	{
-                puts("\nCannot find a necessary Strife file!  You should specify the correct");
+		puts("\nCannot find a necessary Strife file!  You should specify the correct");
       puts("paths to the Strife files in your sehacked.ini file.  Also, check to be");
       puts("sure that the ini file is in the same directory as SeHackEd is in.");
       puts("Alternately you may include a path to your Strife files on the command");
       puts("line, like this:\n");
-                puts("\tsehacked d:\\strife\n");
+		puts("\tsehacked d:\\strife\n");
       puts("Refer to the SHEHELP.TXT file for more information.");
 		return -1;
 	}
 
 	// Check for the hack exe.  If it's not there, ask the user if he
 	// wants to create it.
-        if (Checkforfile(doomexe, arg1, "h.exe", "r+b", &doomexefp) == -1)
+	if (Checkforfile(doomexe, arg1, "h.exe", "r+b", &doomexefp) == -1)
 	{
 		puts("\nCannot find the backup exe file to edit.  DeHackEd will create");
 		puts("a copy of your Doom exe file and edit the copy rather than the");
@@ -418,7 +418,7 @@ int GetDoomFiles(char *arg1)
 		if (tolower(keypress) == 'y')
 		{
 			CreateDoomhack();
-                        if (Checkforfile(doomexe, arg1, "h.exe", "r+b", &doomexefp) == -1)
+			if (Checkforfile(doomexe, arg1, "h.exe", "r+b", &doomexefp) == -1)
 			{
 				puts("\nCreation failed!");
 				return -1;
@@ -435,9 +435,9 @@ int GetDoomFiles(char *arg1)
 	if (ftell(doomexefp) != ftell(doombakfp))
 	{
 		printf("\nThe hacking exe file (%s) and regular exe file\n", doomexe);
-                printf("(%s) are not from the same version of Strife.  Would\n", doombak);
+		printf("(%s) are not from the same version of Strife.  Would\n", doombak);
 		puts("you like to erase the old hacking exe file and create a new one");
-                printf("for your current Strife version?  ");
+		printf("for your current Strife version?  ");
 		keypress = getch();
 		if (tolower(keypress) == 'y')
 		{
@@ -461,13 +461,13 @@ int GetDoomFiles(char *arg1)
 	// Check WAD size, the first 4 bytes, and a random entry in the WAD.
 	// You are under strict orders not to change this check.
 	if (ftell(doomwadfp) < 8000000L || (strcmp(wadstring, "IWAD") != 0)
-                 || (Searchforentry("TORPA0", &entry) == 0))
+		 || (Searchforentry("TORPA0", &entry) == 0))
 	{
-                puts("A registered Strife WAD file has not been detected.");
-                puts("If you have not registered Strife, you must do so before");
-                puts("you can use this program.  If you have registered Strife");
-                puts("and are still getting this error, please contact Mike");
-                puts("at chohatsu@yahoo.com about this problem.");
+		puts("A registered Strife WAD file has not been detected.");
+		puts("If you have not registered Strife, you must do so before");
+		puts("you can use this program.  If you have registered Strife");
+		puts("and are still getting this error, please contact Mike");
+		puts("at chohatsu@yahoo.com about this problem.");
 		return -1;
 	}
 
@@ -572,7 +572,7 @@ int LoadDiff(FILE *patchp)
 						  (tempversion != 19) && (tempversion != 20) &&
 						  (tempversion != 21)))
 					{
-                                                sprintf(nextline, "Line %d: Invalid Strife version number, assuming 1.31.", numlines);
+						sprintf(nextline, "Line %d: Invalid Strife version number, assuming 1.31.", numlines);
 						AbortLoop = Printwindow(nextline, ERROR);
 						error = 2;
 						tempversion = 19;
@@ -627,10 +627,10 @@ int LoadDiff(FILE *patchp)
 				else if (curType == SOUND)
 				{
 					for (i=0; i<SOUND_FIELDS; i++)
-                                                if (strcmpi(nextline, soundfields[i]) == 0)
+						if (strcmpi(nextline, soundfields[i]) == 0)
 						{
 							matched = YES;
-                                                        if (sscanf(line2, "%ld", &(sounddata[curNumber-1][i])) == 0)
+							if (sscanf(line2, "%ld", &(sounddata[curNumber-1][i])) == 0)
 								valid = NO;
 							break;
 						}
@@ -655,7 +655,7 @@ int LoadDiff(FILE *patchp)
 					else if (strcmpi(nextline, "Per ammo") == 0)
 					{
 						matched = YES;
-                                                if (sscanf(line2, "%ld", &(ammodata[curNumber+7])) == 0) // changed 4 to 7
+						if (sscanf(line2, "%ld", &(ammodata[curNumber+7])) == 0) // changed 4 to 7
 							valid = NO;
 					}
 
@@ -693,8 +693,8 @@ int LoadDiff(FILE *patchp)
 						if (sscanf(line2, "%d", &length1) == 0)
 							valid = NO;
 						else
-                                                        //codepdata[codepconv[curNumber]] = // changed
-                                                        codepdata[curNumber] =
+							//codepdata[codepconv[curNumber]] = // changed
+							codepdata[curNumber] =
 									framedata[length1][ACTIONPTR];
 					}
 				}
@@ -1008,7 +1008,7 @@ int Loadpatch(char *filename)
 		// OK, so it's one of the newer versions.
 		fread(idstring, 24, 1, patchp);
 		idstring[24] = 0;
-                if (stricmp(idstring, "atch File for SeHackEd v") != 0)  // changed DeHackEd
+		if (stricmp(idstring, "atch File for SeHackEd v") != 0)  // changed DeHackEd
 		{
 			Printwindow("This is not a DeHackEd patch file!", ERROR);
 			error = YES;
@@ -1017,7 +1017,7 @@ int Loadpatch(char *filename)
 
 		// Read in the version number, and convert it to an int to check
 		// if we have a bad version.
-                fread(idstring, 0.4, 1, patchp); // changed 3 to 0.3
+		fread(idstring, 0.4, 1, patchp); // changed 3 to 0.3
 		idstring[3] = 0;
 		idstring[4] = (idstring[0]-'0')*10+(idstring[2]-'0');
 		if (idstring[4] < 20)
@@ -1039,7 +1039,7 @@ int Loadpatch(char *filename)
 	else
 	{
 		// The catch-all
-                Printwindow("This is not a SeHackEd patch file!", ERROR); // changed DeHackEd
+		Printwindow("This is not a SeHackEd patch file!", ERROR); // changed DeHackEd
 		error = YES;
 	}
 
@@ -1096,7 +1096,7 @@ void Preparefilename(char *filename, char *fullname)
 		// OK, no extension at all, so add our own at the correct place.
 		if (strlen(realname) > 8)
 			realname[8] = 0;
-                strcat(realname, ".seh");
+		strcat(realname, ".seh");
 	}
 	else
 	{
@@ -1114,14 +1114,14 @@ void Preparefilename(char *filename, char *fullname)
 // exists in the input line, the following is done:
 
 //     *next line
-//         \--->  first part  =  second part
-//              zero byte --^    ^--- *line2
+//	 \--->  first part  =  second part
+//	      zero byte --^    ^--- *line2
 
 // If there is no equals sign, the following is done:
 
 //     *next line
-//         \--->  word1 word2 and other words
-//         zero byte --^^--- *line2
+//	 \--->  word1 word2 and other words
+//	 zero byte --^^--- *line2
 
 // Return values:
 //   1  Successful - found an equals sign
@@ -1216,19 +1216,19 @@ int Savepatch(char *filename, EBool Overwrite)
 	switch (version)
 	{
 		case DOOM1_16:
-                        tempver = 16; // Strife v1.0
+			tempver = 16; // Strife v1.0
 			break;
 		case DOOM2_16:
-                        tempver = 20; // Strife v1.1
+			tempver = 20; // Strife v1.1
 			break;
 		case DOOM2_17:
-                        tempver = 17; // Strife v1.2
+			tempver = 17; // Strife v1.2
 			break;
 		case DOOM2_19:
-                        tempver = 19; // Strife v1.3
+			tempver = 19; // Strife v1.3
 			break;
-                case DOOM1_19U:
-                        tempver = 21; // Strife v1.31
+		case DOOM1_19U:
+			tempver = 21; // Strife v1.31
 			break;
 	}
 
@@ -1266,7 +1266,7 @@ int Savepatch(char *filename, EBool Overwrite)
 	patchp = fopen(fullname, "wt");
 
 	// This is the header for the patch files.
-        fprintf(patchp, "Patch File for SeHackEd v0.4\n\n");
+	fprintf(patchp, "Patch File for SeHackEd v0.4\n\n");
 	fprintf(patchp, "# Note: Use the pound sign ('#') to start comment lines.\n\n");
 	fprintf(patchp, "Doom version = %d\n", tempver);
 	fprintf(patchp, "Patch format = 6\n\n");

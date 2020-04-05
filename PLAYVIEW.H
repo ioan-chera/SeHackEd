@@ -55,7 +55,7 @@ extern EBool Waitforevent(EBool eatevent);
 extern void  hideMouseCursor(void);
 extern void  showMouseCursor(void);
 extern EBool getLastEvent(unsigned &x, unsigned &y, EButton &left_button,
-								  EButton &right_button);
+                                  EButton &right_button);
 
 // Variables from mouse.h
 extern unsigned eventButtons;

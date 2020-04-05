@@ -24,20 +24,20 @@ void  Highlightname(char *name);
 void  Jump(void);
 void  Listkeyinput(char key, int &topnum, int &curnum, int maxnum, int listsize);
 void  Listmouseinput(int mousex, int mousey, int arrowx, int arrowy1,
-							int arrowy2, int &topnum, int &curnum, int maxnum,
-							int listsize);
+                            int arrowy2, int &topnum, int &curnum, int maxnum,
+                            int listsize);
 void  Loadpatchname(void);
 void  Savepatchname(void);
 int   Textsearch(void);
 
 // Data from dheinit.h
-extern EVersions version;   	   // The Doom version we're using
-extern ERedraw redraw;				// Current redraw state
-extern EModes  mode;					//	The mode we start in
-extern EBool   changes;				// If changes have been made or not
-extern ScreenSet *Modeptr;			// Pointer to Data for the current mode
-extern EBool   askatload;			// Ask about reloading data during load
-extern FILE *doombakfp;				// File pointer to doom backup exe
+extern EVersions version;          // The Doom version we're using
+extern ERedraw redraw;                // Current redraw state
+extern EModes  mode;                    //    The mode we start in
+extern EBool   changes;                // If changes have been made or not
+extern ScreenSet *Modeptr;            // Pointer to Data for the current mode
+extern EBool   askatload;            // Ask about reloading data during load
+extern FILE *doombakfp;                // File pointer to doom backup exe
 
 extern long (*thingdata )[THING_FIELDS];
 extern long (*framedata )[FRAME_FIELDS];
@@ -64,7 +64,7 @@ extern char namelist[345][18];  // changed 138 to 345
 // Functions from print.cpp
 extern EBool Printwindow(char *message, int type);
 extern int   Printinputwindow(char *buffer, char *prompt, EInptype type,
-										int length, char firstchar = 0);
+                                        int length, char firstchar = 0);
 
 // From files.cpp
 extern int Loadpatch(char *filename);
@@ -83,5 +83,5 @@ extern int Loadfilelist(char *filename);
 // From mouse.h
 extern unsigned eventButtons;
 extern unsigned LastEventButtons;
-extern EBool eventHappened;        // these vars to use getLastEvent
+extern EBool eventHappened;    // these vars to use getLastEvent
 extern long lclicktime;

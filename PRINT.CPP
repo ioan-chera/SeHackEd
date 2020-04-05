@@ -56,7 +56,7 @@ void Printframe(void)
 	if (redraw == ALL)
 	{
 		Drawframe(0, NORMAL, 4, 3, 76, 47);
-		CPutsXY(7, 5, "Frame             Sprite   Bright   Next                  Code");
+		CPutsXY(7, 5, "Frame	     Sprite   Bright   Next		  Code");
 		CPutsXY(7, 6, "Number   Name     #  sub#  Sprite   Frame    Duration   Pointer");
 		CPutsXY(Modeptr->arrows[0], Modeptr->arrows[1], "");
 		CPutsXY(Modeptr->arrows[2], Modeptr->arrows[3], "");
@@ -88,11 +88,11 @@ void Printframe(void)
 					break;
 				case 5:
 					if (framedata[current][ACTIONPTR] == 0)
-						cputs("        0  ");
+						cputs("	0  ");
 					else
 						// Print the code pointer
-                                                cprintf(pformat[j], framedata[current][order[j]]); // changed
-                                                //cprintf(pformat[j], codepdata[current]);
+						cprintf(pformat[j], framedata[current][order[j]]); // changed
+						//cprintf(pformat[j], codepdata[current]);
 					break;
 				case 0:
 				case 3:
@@ -110,18 +110,18 @@ void Printhelp(void)
 {
 	char *keys[19] = {"Esc", "Enter", "Space", "a", "c", "g", "j",	"l", "r",
 							"s", "u", "w", "z", "F2", "F3", "F4", "F5", "F6", "F7"};
-        char *effects[19] = {"quit SeHackEd",
+	char *effects[19] = {"quit SeHackEd",
 								"edit the current field",
 								"view/play the current field",
-                                                                "about SeHackEd",
+								"about SeHackEd",
 								"copy from one object to another",
 								"go to object (searches in Text editor)",
 								"jump to the current item in its editor",
 								"load a patch file",
-                                                                "run Strife",
+								"run Strife",
 								"save a patch file",
-                                                                "undo all changes--reload hacked Strife",
-                                                                "write current changes to hacked Strife",
+								"undo all changes--reload hacked Strife",
+								"write current changes to hacked Strife",
 								"zap all changes; reload original data",
 								"Thing editor",
 								"Frame/Code Pointer editor",
@@ -136,7 +136,7 @@ void Printhelp(void)
 	textattr(INFO);
 
 	CPutsXY(35, 10, "Help Screen");
-        CPutsXY(14, 12, "Refer to the SHEHELP.TXT file for general user help");
+	CPutsXY(14, 12, "Refer to the SHEHELP.TXT file for general user help");
 	CPutsXY(12, 13, "and complete key information.  Use arrow keys or mouse");
 	CPutsXY(12, 14, "to move between fields.  The left mouse button selects,");
 	CPutsXY(12, 15, "and the right mouse button is Escape.");
@@ -224,24 +224,24 @@ int Printinputwindow(char *buffer, char *prompt, EInptype type, int length, char
 // changed Dehacked to Sehacked
 void Printintro(void)
 {
-        char *about[11] = {"SeHackEd 0.4",
-                                                         "The Strife exe Hack Editor",
-                                                         "",
-                                                         "modified by MikeFredericks",
-                                                         "Email: chohatsu@yahoo.com",
-                                                         "DeHackEd by GregLewis",
+	char *about[11] = {"SeHackEd 0.4",
+							 "The Strife exe Hack Editor",
+							 "",
+							 "modified by MikeFredericks",
+							 "Email: chohatsu@yahoo.com",
+							 "DeHackEd by GregLewis",
 							 "Email: gregl@umich.edu",
-                                                         "",
+							 "",
 							 "Special thanks to:",
 							 "The many others who have helped",
-                                                         "in the creation of this program!"};
-        int xloc[11] = {34, 26, 30, 28, 28, 28, 28, 30, 24, 24, 24};
-        char *vers[6] = {"Strife v1.0",
-                                                  "Strife v1.1",
-                                                  "Strife v1.2",
-                                                  "Strife v1.3",
-                                                  "Strife v1.31",
-                                                  "User Defined"}; // Changed Ultimate Doom to Strife
+							 "in the creation of this program!"};
+	int xloc[11] = {34, 26, 30, 28, 28, 28, 28, 30, 24, 24, 24};
+	char *vers[6] = {"Strife v1.0",
+						  "Strife v1.1",
+						  "Strife v1.2",
+						  "Strife v1.3",
+						  "Strife v1.31",
+						  "User Defined"}; // Changed Ultimate Doom to Strife
 	char *stats[8] = {"Version:",
 							"EXE name:",
 							"WAD name:",
@@ -313,7 +313,7 @@ void Printmisccheat(void)
 				string[cheatinfo[i][1]] = 0;
 
 				// Display it
-                                CPutsXY(64, i+8, string);
+				CPutsXY(64, i+8, string);
 				break;
 		}
 	}
@@ -323,10 +323,10 @@ void Printmisccheat(void)
 
 void Printmiscmisc(void)
 {
-        //int i;  // changed
+	//int i;  // changed
 
 	textattr(NORMAL);
-        /*
+	/*
 	if (redraw == ALL)
 		Drawframe(0, NORMAL, 5, 7, 38, 26);
 
@@ -349,16 +349,16 @@ void Printmiscmisc(void)
 					CPrintfXY(26, i+9, "%-11ld", miscdata[i]);
 				break;
 		}
-        }*/
+	}*/
 }
 
 // Prints the weapon info on the misc screen
 
 void Printmiscweapon(void)
 {
-        char order[6] = {BOB1FRAME, BOB2FRAME, BOB3FRAME, SHOOTFRAME, FIREFRAME, UNKNOWNW};
-        char temp[11];  // changed 10 to 11
-        char na[10] = "N/A     ";  // changed 9 to 10
+	char order[6] = {BOB1FRAME, BOB2FRAME, BOB3FRAME, SHOOTFRAME, FIREFRAME, UNKNOWNW};
+	char temp[11];  // changed 10 to 11
+	char na[10] = "N/A     ";  // changed 9 to 10
 	int curweapon = Modeptr->current;
 	int i;
 
@@ -370,69 +370,69 @@ void Printmiscweapon(void)
 	CPutsXY(22, 33, "Weapon number");
 	CPutsXY(22, 34, "Weapon name");
 	CPutsXY(22, 35, "Ammo type");
-        //CPutsXY(22, 44, "? Unknown");
+	//CPutsXY(22, 44, "? Unknown");
 
 
-        for (i=0; i<12; i++)  // changed 11 to 12
+	for (i=0; i<12; i++)  // changed 11 to 12
 	{
 		textattr(NORMAL);
 		switch (redraw)
 		{
 			case ALL:
-                                if (i > 2)
-                                        CPutsXY(22, i+33, fullwepfields[i-3]);
-                                if (i > 5 && i < 11)
+				if (i > 2)
+					CPutsXY(22, i+33, fullwepfields[i-3]);
+				if (i > 5 && i < 11)
 				{
 					CPutsXY(52, i+33, "[");
 					CPutsXY(58, i+33, "]");
 				}
 			case DATA:
-                                gotoxy(39, i+33);
+				gotoxy(39, i+33);
 				switch (i)
 				{
 					case 0:
 						cprintf("%-2d", curweapon+1);
 						break;
 					case 1:
-                                                cprintf("%-16s", weaponlist[curweapon]);
+						cprintf("%-16s", weaponlist[curweapon]);
 						break;
 					case 2:
-                                                if (weapondata[curweapon][AMMOTYPE] > 8) // changed 5 to 8
+						if (weapondata[curweapon][AMMOTYPE] > 8) // changed 5 to 8
 							cputs(na);
 						else
-                                                        cprintf("%-9s", ammolist[weapondata[curweapon][AMMOTYPE]]);  // 9 = length of ammo name
+							cprintf("%-9s", ammolist[weapondata[curweapon][AMMOTYPE]]);  // 9 = length of ammo name
 						break;
 					case 3:
 						cprintf("%-11ld", weapondata[curweapon][AMMOTYPE]);
 						break;
 					case 4:
-                                                if (weapondata[curweapon][AMMOTYPE] >= 7) // changed 4 to 7
+						if (weapondata[curweapon][AMMOTYPE] >= 7) // changed 4 to 7
 							cputs(na);
 						else
 							cprintf("%-11ld", ammodata[weapondata[curweapon][AMMOTYPE]]);
 						break;
 					case 5:
-                                                if (weapondata[curweapon][AMMOTYPE] >= 7) // changed 4 to 7
+						if (weapondata[curweapon][AMMOTYPE] >= 7) // changed 4 to 7
 							cputs(na);
 						else
-                                                        cprintf("%-11ld", ammodata[weapondata[curweapon][AMMOTYPE]+7]);  // changed 4 to 7
+							cprintf("%-11ld", ammodata[weapondata[curweapon][AMMOTYPE]+7]);  // changed 4 to 7
 						break;
 					case 6:
 					case 7:
 					case 8:
 					case 9:
 					case 10:
-                                        case 11: // changed added case 11
-                                                cprintf("%-11ld", weapondata[curweapon][order[i-6]]);
+					case 11: // changed added case 11
+						cprintf("%-11ld", weapondata[curweapon][order[i-6]]);
 
-                                                if (i != 11)
-                                                     Getframename(weapondata[curweapon][order[i-6]], temp);
+						if (i != 11)
+						     Getframename(weapondata[curweapon][order[i-6]], temp);
 						Highlightname(temp);
-                                                if (i != 11)
-                                                     CPrintfXY(53, i+33, "%-5s", temp);
-                                                // break;
-                                        // case 11:
-                                                // CPrintfXY(39, i+33, "%-5s", weapondata[curweapon][UNKNOWNW]);
+						if (i != 11)
+						     CPrintfXY(53, i+33, "%-5s", temp);
+						// break;
+					// case 11:
+						// CPrintfXY(39, i+33, "%-5s", weapondata[curweapon][UNKNOWNW]);
 
 				}
 		}
@@ -443,13 +443,13 @@ void Printmiscweapon(void)
 
 void Printtextintro(void)
 {
-        puts("\nWelcome to SeHackEd v0.4\n");
-        puts("modified by MikeFredericks, email at chohatsu@yahoo.com.");
-        puts("DeHackEd by GregLewis, email at gregl@umich.edu.");
+	puts("\nWelcome to SeHackEd v0.4\n");
+	puts("modified by MikeFredericks, email at chohatsu@yahoo.com.");
+	puts("DeHackEd by GregLewis, email at gregl@umich.edu.");
 	puts("Vital Doom exe specs written by Matt Fell.");
-        puts("Thanks to Janis Legzdinsh and Randy Heit for very helpful info.");
-        puts("Thanks to iD for creating the Doom engine.");
-        puts("Thanks to Rogue and Velocity for creating Strife.\n");
+	puts("Thanks to Janis Legzdinsh and Randy Heit for very helpful info.");
+	puts("Thanks to iD for creating the Doom engine.");
+	puts("Thanks to Rogue and Velocity for creating Strife.\n");
 
 }
 
@@ -457,12 +457,12 @@ void Printtextintro(void)
 
 void Printoptions(void)
 {       // changed dehacked and doom
-        puts("\n  Here is the proper command line syntax for SeHackEd:\n");
-        puts("\tsehacked [path] [-reload] [-load <patch1> ...] [-save <patch>]\n");
-        puts("  path             specify a different directory for Strife.exe");
-	puts("  -reload          load original exe data into hacked exe");
-        puts("  -load patch(es)  load one or more patch files into the Strife exe file.");
-        puts("  -save patch      save the current Strife exe to a patch file");
+	puts("\n  Here is the proper command line syntax for SeHackEd:\n");
+	puts("\tsehacked [path] [-reload] [-load <patch1> ...] [-save <patch>]\n");
+	puts("  path	     specify a different directory for Strife.exe");
+	puts("  -reload	  load original exe data into hacked exe");
+	puts("  -load patch(es)  load one or more patch files into the Strife exe file.");
+	puts("  -save patch      save the current Strife exe to a patch file");
 }
 
 // Prints the sound screen
@@ -477,7 +477,7 @@ void Printsound(void)
 	if (redraw == ALL)
 	{
 		Drawframe(0, NORMAL, 16, 3, 64, 47);
-		CPutsXY(19, 5, "Sound            Text");
+		CPutsXY(19, 5, "Sound	    Text");
 		CPutsXY(19, 6, "Number  Name     Offset   0 / 1    \"Value\"");
 		CPutsXY(Modeptr->arrows[0], Modeptr->arrows[1], "");
 		CPutsXY(Modeptr->arrows[2], Modeptr->arrows[3], "");
@@ -723,33 +723,33 @@ void Printthingbits(void)
 							"Shootable",
 							"Total invisibility",
 							"Can't be hit",
-                                                        "Standing",
-                                                        "? (Peasant/Beggars)",
+							"Standing",
+							"? (Peasant/Beggars)",
 							"Steps before attack",
 							"Hangs from ceiling",
 							"No Gravity",
 							"Travels over cliffs",
-                                                        "? (Boss/QuestThing)",
+							"? (Boss/QuestThing)",
 							"No clipping",
 							"Slides along walls",
 							"Floating",
-                                                        "? (mostly enemies)",
+							"? (mostly enemies)",
 							"Projectiles",
 							"Disappearing weapon",
-                                                        "Translucent",
-                                                        "Sparks (vs. bleeds)",
+							"Translucent",
+							"Sparks (vs. bleeds)",
 							"Sliding helpless",
 							"No auto-leveling",
 							"Affects Kill %",
 							"Affects Item %",
-                                                        "Bounces",
+							"Bounces",
 							"Not in deathmatch",
-                                                        "Goodguy/Ally",
-                                                        "Modify visibility",
-                                                        "Color 1",
-                                                        "Color 2",
-                                                        "Color 3",
-                                                        "Spectral"};
+							"Goodguy/Ally",
+							"Modify visibility",
+							"Color 1",
+							"Color 2",
+							"Color 3",
+							"Spectral"};
 	char brackets[4] = "[ ]";
 	int i;
 
@@ -802,50 +802,50 @@ void Printthingframe(void)
 	if (redraw == ALL)
 		Drawframe(0, NORMAL, 36, 14, 77, 25);
 
-        for (i=15; i<24; i++) // changed 23 to 24
+	for (i=15; i<24; i++) // changed 23 to 24
 	{
 		textattr(NORMAL);
 		switch (redraw)
 		{
 			case ALL:
 				CPutsXY(38, i+1, thingfields[thingorder[i]]);
-                                if (i < 23)
-                                {
-                                     CPutsXY(69, i+1, "[");
-                                     CPutsXY(75, i+1, "]");
-                                }
+				if (i < 23)
+				{
+				     CPutsXY(69, i+1, "[");
+				     CPutsXY(75, i+1, "]");
+				}
 			case DATA:
 				CPrintfXY(57, i+1, "%-11ld", thingdata[Modeptr->current][thingorder[i]]);
 				textattr(NORMAL);
 
-                                if (i < 23)
-                                     Getframename(thingdata[Modeptr->current][thingorder[i]], temp);
+				if (i < 23)
+				     Getframename(thingdata[Modeptr->current][thingorder[i]], temp);
 				Highlightname(temp);
-                                if (i < 23)
-                                     CPrintfXY(70, i+1, "%-5s", temp);
+				if (i < 23)
+				     CPrintfXY(70, i+1, "%-5s", temp);
 			case NOT:
 				break;
 		}
 	}
-        if (thingdata[Modeptr->current][thingorder[23]] != 0) // Print Name String
-        {
-        int j;
-        int stringlen;
-        char buffer[32];
-        stringlen = strlen(textdata+thingdata[Modeptr->current][thingorder[23]]);
+	if (thingdata[Modeptr->current][thingorder[23]] != 0) // Print Name String
+	{
+	int j;
+	int stringlen;
+	char buffer[32];
+	stringlen = strlen(textdata+thingdata[Modeptr->current][thingorder[23]]);
 	textattr(NORMAL);
-        strncpy(buffer, textdata+thingdata[Modeptr->current][thingorder[23]], 31);
-        for (j=0; j<strlen(buffer); j++)
-                if (buffer[j] == '\n' || buffer[j] == '\r' || buffer[j] == '\b' ||
-                    buffer[j] == '\f' || buffer[j] == '\t')
-                        buffer[j] = '~';
-        CPrintfXY(25, 29, "%-31s", "Name String:");
-        CPrintfXY(38, 29, "%-31s", buffer);
-        j+=stringlen; // shut up stupid warning 
-        j-=stringlen; // about stringlen not being used when it is needed
-        }
-        else
-                CPrintfXY(25, 29, "%-31s", "                                            ");
+	strncpy(buffer, textdata+thingdata[Modeptr->current][thingorder[23]], 31);
+	for (j=0; j<strlen(buffer); j++)
+		if (buffer[j] == '\n' || buffer[j] == '\r' || buffer[j] == '\b' ||
+		    buffer[j] == '\f' || buffer[j] == '\t')
+			buffer[j] = '~';
+	CPrintfXY(25, 29, "%-31s", "Name String:");
+	CPrintfXY(38, 29, "%-31s", buffer);
+	j+=stringlen; // shut up stupid warning
+	j-=stringlen; // about stringlen not being used when it is needed
+	}
+	else
+		CPrintfXY(25, 29, "%-31s", "					    ");
 }
 
 // Prints out the little info part of the Thing editing screen

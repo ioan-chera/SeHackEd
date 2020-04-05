@@ -15,7 +15,7 @@
 #define SIZE2_18  753218L
 #define SIZE2_19  753213L
 #define SIZE1_19U 753215L       // The Ultimate Doom v1.9 to Strife 1.31
-                                // changed to 753215
+				// changed to 753215
 
 // Number of versions supported, number of separate editing screen,
 // and number of data read in.
@@ -151,9 +151,9 @@ typedef enum {NOT, DATA, ALL} ERedraw;
 typedef enum {NO, YES} EBool;
 
 // Mouse defines
-#define LEFTBUTTON               1   /* bit 0 */
-#define RIGHTBUTTON              2   /* bit 1 */
-#define MIDDLEBUTTON             4   /* bit 2 */
+#define LEFTBUTTON	       1   /* bit 0 */
+#define RIGHTBUTTON	      2   /* bit 1 */
+#define MIDDLEBUTTON	     4   /* bit 2 */
 #define CURSOR_LOCATION_CHANGED  1   /* event mask bits */
 #define LEFT_BUTTON_PRESSED      2
 #define LEFT_BUTTON_RELEASED     4
@@ -171,30 +171,30 @@ typedef enum {STRING, LONGINT, YESNO, CHARINT} EInptype;
 //	Frame # fields end in 'frame', and Sound # fields end in 'sound'.
 //	(Go figure!)
 
-#define IDNUM             0
+#define IDNUM	     0
 #define NORMALFRAME       1
-#define HP			        2
-#define MOVEFRAME         3
-#define ALERTSOUND        4
+#define HP				2
+#define MOVEFRAME	 3
+#define ALERTSOUND	4
 #define REACTIONTIME      5
 #define ATTACKSOUND       6
 #define INJUREFRAME       7
-#define PAINCHANCE        8
-#define PAINSOUND         9
+#define PAINCHANCE	8
+#define PAINSOUND	 9
 #define CLOSEATTACKFRAME 10
 #define FARATTACKFRAME   11
 #define CRASHFRAME       12
 #define DEATHFRAME       13
 #define EXPLDEATHFRAME   14
 #define DEATHSOUND       15
-#define SPEED                            16
-#define WIDTH                            17
-#define HEIGHT                           18
-#define MASS                             19
+#define SPEED			    16
+#define WIDTH			    17
+#define HEIGHT			   18
+#define MASS			     19
 #define MISSILEDAMAGE    20
-#define ACTSOUND                         21
-#define BITS                             22
-#define NAMEP            23
+#define ACTSOUND			 21
+#define BITS			     22
+#define NAMEP	    23
 
 // Labelled defines for Frame arrays
 
@@ -246,8 +246,8 @@ typedef enum {STRING, LONGINT, YESNO, CHARINT} EInptype;
 // Structure definition for the dev sb variable
 struct sb_conf
 {
-	unsigned int   addr;         /* Address of sb (0x220 or 0x240) */
-	unsigned int   irq;          /* IRQ # (factory default=7) */
+	unsigned int   addr;	 /* Address of sb (0x220 or 0x240) */
+	unsigned int   irq;	  /* IRQ # (factory default=7) */
 };
 
 // Format for directory entries in the heretic.wad file
@@ -262,7 +262,7 @@ typedef struct ResourceT
 // data from the exe.
 typedef struct DataSetS {
 	long offset[NUMVERS];	// Offsets for this data for each Doom version
-        long length;                            // length of the entire data block
+	long length;			    // length of the entire data block
 	long numobj;				// Number of objects in this data block
 	long objsize;				// Size of each object
 	char *name;					// The name of the data
