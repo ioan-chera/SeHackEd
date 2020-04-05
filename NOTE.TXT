@@ -1,0 +1,134 @@
+SeHackEd version 0.4
+Modified by Mike Fredericks, chohatsu@yahoo.com
+Thanks to Janis Legzdinsh for offsets and more, http://www.vavoom-engine.com
+Thanks to Randy Heit for cheat code offsets, http://zdoom.org
+based on DeHackEd version 3.0a
+Written by Greg Lewis, gregl@umich.edu
+If you release any versions of this code, please include
+the author(s) in the credits.  Give credit where credit is due!
+
+
+SeHackEd is a version of DeHackEd modified to work with Strife.
+
+This source code from SHE04SRC.zip is the normal version of SeHackEd.
+S1H04SRC.zip is the source code of the S1Hack version for modifying Strife
+v1.1.
+
+
+Under the hood it's not clean as it should probably be.  I didn't want to
+completely gut areas such as code pointers and misc info which I simply don't
+have the information I need to get them to work at the moment.  As of v0.4 I
+have commented out a lot of unused stuff and eliminated warnings, so at least
+it is a bit cleaner even if it doesn't look so pretty how I have stuff
+commented out.
+
+
+Known issues and their sources:
+
+I had trouble getting it so all you can edit every single thing.  About a
+dozen unknowns at the end were treated like clipboards so I added more
+clipboards to "fix" it.  I don't know what the source of the problem is and
+the tradeoff of the fix is there is one thing called "Do not edit" that you
+should not edit.  See sehacked.txt for more details.
+
+The ammo per item settings are always detected as changed even though they
+stay correct.  This results in them always being in a SEH patch you save.
+Originally the ammo per item settings were mixed up, but I fixed them.
+
+I'm not sure if this still happens and it probably doesn't happen anymore but
+Sprite 1's offset (for PNCH) may get changed every once in a while.  Simply
+change its value back to -111112 to fix it.  Or delete the change from a SEH
+file.  I have no idea where this is coming from.
+
+Sound playback doesn't work right.  I suspect it's something to do with the
+compiler I'm using.  I had the same problem  when I compiled the unmodified
+DeHackEd v3.0a source.  But when I use the released version of DeHackEd v3.0a
+or any released version of DeHackEd the sound plays fine.
+
+
+You can obviously spot which files are modified by seeing that their dates
+are a lot more recent.  They also start with new comments.  To find what
+changes I made simply search for this
+text:
+// Changed 
+
+
+You can always look at the original Dehacked source files to see how they
+were before.
+
+You can find them at
+http://www.yossman.net/~tree/_doom.html
+
+
+The sehacked source is available at
+http://doomworld.com/sehacked
+
+
+Exile gave me some helpful info -
+
+"It's possible to compile the DeHackEd 3.0 sources with Borland Turbo C++ 3.0
+too. You can find that compiler here:
+
+http://vaibhavweb.tripod.com
+or
+http://www.geocities.com/serra194/download.html
+if the other one doesnt work.
+
+Just extract all the zips into one dir and run the install program. Then fire
+up a DOS box and go to the directory of the source code. Then run the
+tc\bin\tc.exe file (depends on where you installed TCPP). It should load the
+dehacked.prj file automatically. Set the paths to the TCPP \include and \lib
+directories by going to 'Options -> Directories'. Then just do a
+'Compile -> Build all' to produce the orignal DeHackEd executable."
+
+
+I have a tc.bat file in with the SeHackEd source to run the compiler.
+
+You can visit Exile's Doom page at
+http://home.tiscali.nl/dennis.meuwissen
+and get his WhackEd2 editor at
+http://www.whacked.daniel-carroll.co.uk
+
+
+Original note.txt by Greg Lewis below
+-------------------------------------
+
+  To anyone who may be viewing/changing this source code:
+
+  I put a bunch of work into this, so if you are going to go about changing
+it, I ask that you let me know about it.  If you have your hands on the code,
+you've probably already gotten in touch with me, but if not, please let me
+know.  My email address is in all the source files.
+
+  On a related note, I'd appreciate credit in any releases using this code.
+I've done a lot of work, and believe I deserve credit in any programs using
+some or any of this code.  I don't plan on releasing any more versions of
+DeHackEd, so go ahead, tweak/change/modify and release it if you wish.
+
+  And (this one should be obvious) don't change the checks for registered
+Doom.  Since DeHackEd is already pressing the line on legality (technically
+it's against Id's copyright) they might get pretty ticked off if they found
+a shareware-modifying version floating around.  'nuff said.
+
+  The code should be fairly consistent.  Each C file has a header that lists
+all the function prototypes, plus other functions that the code calls.  The
+DEHACKED.H file contains global #defines and enums.  Functions should be
+split up fairly consistently among the various source files, i.e., anything
+dealing with patch files is in FILES.CPP, low-level screen accessing 
+functions are in SCREEN.CPP, etc.
+
+  DeHackEd was compiled with Borland C++ 3.1.
+
+  Thanks!
+                                                Greg Lewis
+                                                gregl@umich.edu
+
+-------------------------------------
+end of original note.txt
+
+  SeHackEd was compiled with Borland Turbo C++ 3.0.
+
+                                                Mike Fredericks
+                                                chohatsu@yahoo.com
+
+
